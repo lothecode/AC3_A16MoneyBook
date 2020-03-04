@@ -8,10 +8,11 @@ const recordSchema = new Schema({
   },
   category: {
     type: String,
+    required: true
   },
   date: {
-    type: Date, // 這裡還要改(?)
-    default: Date.now
+    type: String,
+    required: true
   },
   amount: {
     type: Number,

@@ -9,11 +9,20 @@ const db = mongoose.connection
 db.on('error', () => { console.log('mongodb error!') })
 db.once('open', () => {
   console.log('mongodb connected!')
-  for (let i = 1; i <= 10; i++) {
+  for (let i = 1; i <= 3; i++) {
     Record.create({
       name: 'expense-' + i,
-      category: '休閒', // 這裡先固定
+      date: '2020/03/1' + i,
+      category: '休閒娛樂', // 這裡先固定
       amount: i * 100
+    })
+  }
+  for (let j = 1; j <= 2; j++) {
+    Record.create({
+      name: 'expense-' + j,
+      date: '2020/03/2' + j,
+      category: '家居物業', // 這裡先固定
+      amount: j * 50
     })
   }
   console.log('seeder done!')
