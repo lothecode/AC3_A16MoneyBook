@@ -1,6 +1,11 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+const exphbs = require('express-handlebars')
+
+// 告訴 express 使用 handlebars 當作 template engine 並預設 layout 是 main
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+app.set('view engine', 'handlebars')
 
 mongoose.connect('mongodb://localhost/expense', { useNewUrlParser: true, useUnifiedTopology: true }) // 設定連線到 mongoDB的expense資料庫
 
@@ -14,7 +19,7 @@ db.once('open', () => { console.log('mongodb connected!') })
 const Record = require('./models/record')
 
 app.get('/', (req, res) => {
-  res.send('This will be a MoneyBook app')
+  res.render('index')
 })
 
 app.get('/records', (req, res) => {
