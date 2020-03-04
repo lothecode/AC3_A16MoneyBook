@@ -1,1 +1,55 @@
-<h1>This is handlebars index</h1>
+<div class="row border">
+  <div class="mx-auto">
+
+    {{!-- category select dropdown  --}}
+    <div class="btn-group btn-block my-3">
+      <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuLink" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        類別
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="#">類別 1</a>
+        <a class="dropdown-item" href="#">類別 2</a>
+        <a class="dropdown-item" href="#">類別 3</a>
+      </div>
+    </div>
+
+
+    {{!-- total amount --}}
+    <div class="row">
+      <div class="col-auto">
+        <p class="lead">總金額:</p>
+      </div>
+      <div class="col-auto mx-auto">
+        <h1 class="display-4 mx-auto">5000</h1>
+      </div>
+    </div>
+    {{!-- expense list --}}
+
+    <div class="row">
+      <ul class="list-group">
+        {{#each records}}
+        <li class="list-group-item">
+          <div class="row">
+            <div class="col-auto mr-auto">
+              <h4>{{{this.category}}}</h4>
+              <h4>{{{this.name}}}</h4>
+              <h4>{{{this.date}}}</h4>
+              <h4>${{{this.amount}}}</h4>
+            </div>
+            <div class="col-auto">
+              <a href="/records/{{{this.id}}}/edit" class="btn btn-success">修改</a>
+              <form action="/records/{{{this.id}}}/delete?_method=DELETE" method="POST" style="display: inline;">
+                <button type="submit" class="btn btn-danger">刪除</button>
+              </form>
+            </div>
+          </div>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+    <div class="row justify-content-center mt-3">
+      <a href="/records/new" class="btn btn-primary mb-3">新增支出</a>
+    </div>
+  </div>
+</div>

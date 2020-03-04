@@ -19,11 +19,16 @@ db.once('open', () => { console.log('mongodb connected!') })
 const Record = require('./models/record')
 
 app.get('/', (req, res) => {
-  res.render('index')
+  return res.redirect('/records')
 })
 
 app.get('/records', (req, res) => {
-  res.send('list all')
+  Record.find()
+    .lean()
+    .exec((err, records) => {
+      if (err) return console.error(err)
+      return res.render('index', { records: records })
+    })
 })
 
 app.get('/records/new', (req, res) => {

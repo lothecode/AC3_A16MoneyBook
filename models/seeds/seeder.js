@@ -12,6 +12,7 @@ db.once('open', () => {
   for (let i = 1; i <= 10; i++) {
     Record.create({
       name: 'expense-' + i,
+      category: '休閒', // 這裡先固定
       amount: i * 100
     })
   }

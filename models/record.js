@@ -6,11 +6,12 @@ const recordSchema = new Schema({
     type: String,
     required: true
   },
-  categoty: {
+  category: {
     type: String,
   },
   date: {
-    type: Date
+    type: Date, // 這裡還要改(?)
+    default: Date.now
   },
   amount: {
     type: Number,
