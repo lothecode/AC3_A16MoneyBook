@@ -17,6 +17,34 @@ app.get('/', (req, res) => {
   res.send('This will be a MoneyBook app')
 })
 
+app.get('/records', (req, res) => {
+  res.send('list all')
+})
+
+app.get('/records/new', (req, res) => {
+  res.send('create new one')
+})
+
+app.post('/records', (req, res) => {
+  res.send('create new one POST')
+})
+
+app.get('/records/:id', (req, res) => {
+  res.send('one detail')
+})
+
+app.get('/records/:id/edit', (req, res) => {
+  res.send('edit one')
+})
+
+app.post('/records/:id/edit', (req, res) => {  // 之後改成put
+  res.send('edit one PUT')
+})
+
+app.post('/records/:id/delete', (req, res) => {   // 之後改成delete
+  res.send('delete one')
+})
+
 app.listen(3000, () => {
   console.log('APP is running on express')
 })
