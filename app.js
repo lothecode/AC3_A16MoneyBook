@@ -46,8 +46,11 @@ app.get('/records', (req, res) => {
     .lean()
     .exec((err, records) => {
       if (err) return console.error(err)
-      let totalAmount = 1000  // 不會寫??
-      return res.render('index', { records: records, total: totalAmount })
+      let total = 0
+      records.forEach(item => {
+        total += item.amount
+      })
+      return res.render('index', { records, total })
     })
 })
 
@@ -128,6 +131,27 @@ app.post('/records/:id/delete', (req, res) => {   // 之後改成delete
       return res.redirect('/records')
     })
   })
+})
+
+// sort by category
+app.get('/screen/:screen', (req, res) => {
+  Record.find()
+    .lean()
+    .exec((err, records) => {
+      if (err) return console.error(err)
+      if (req.params.screen === 'all') {
+        return res.redirect('/records')
+      } else {
+        const results = records.filter(item => {
+          return item.category === req.params.screen
+        })
+        let total = 0
+        results.forEach(item => {
+          total += item.amount
+        })
+        return res.render('index', { records: results, total })
+      }
+    })
 })
 
 app.listen(3000, () => {
