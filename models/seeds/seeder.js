@@ -12,17 +12,17 @@ db.once('open', () => {
   for (let i = 1; i <= 3; i++) {
     Record.create({
       name: 'expense-' + i,
-      date: '2020/03/1' + i,
-      category: '休閒娛樂', // 這裡先固定
-      amount: i * 100
+      date: '2019-11-2' + i,
+      category: 'happy', // 這裡先固定
+      amount: i * 129
     })
   }
-  for (let j = 1; j <= 2; j++) {
+  for (let j = 1; j <= 3; j++) {
     Record.create({
-      name: 'expense-' + j,
-      date: '2020/03/2' + j,
-      category: '家居物業', // 這裡先固定
-      amount: j * 50
+      name: 'expense-1' + j,
+      date: '2020-02-1' + j,
+      category: 'life', // 這裡先固定
+      amount: j * 26
     })
   }
   console.log('seeder done!')

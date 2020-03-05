@@ -1,0 +1,43 @@
+<form action="/records/{{{record._id}}}/edit" method="POST" class="col-md-10 mx-auto mt-4">
+  <div class="row text-center my-3">
+    <p class="col-md-3">*必填欄位</p>
+    <h2 class="col-md-8">請修改您的支出</h2>
+  </div>
+  <div class="form-group row">
+    <label for="name" class="col-md-3 col-form-label text-center">名稱* : </label>
+    <div class="col-md-8">
+      <input type="text" class="form-control" name="name" value="{{{record.name}}}" required>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="date" class="col-md-3 col-form-label text-center">日期* : </label>
+    <div class="col-md-8">
+      <input type="date" class="form-control" name="date" value="{{{record.date}}}">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="select" class="col-md-3 col-form-label text-center">類別* : </label>
+    <div class="col-md-8">
+      <select class="form-control" name="category">
+        <option value="life" {{#ifCond record.category '===' 'life'}} selected {{/ifCond}}>家居物業</option>
+        <option value="travel" {{#ifCond record.category '===' 'travel'}} selected {{/ifCond}}>交通出行</option>
+        <option value="happy" {{#ifCond record.category '===' 'happy'}} selected {{/ifCond}}>休閒娛樂</option>
+        <option value="food" {{#ifCond record.category '===' 'food'}} selected {{/ifCond}}>餐飲食品</option>
+        <option value="others" {{#ifCond record.category '===' 'others'}} selected {{/ifCond}}>其他</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="amount" class="col-md-3 col-form-label text-center">金額* : </label>
+    <div class="col-md-8">
+      <input type="text" class="form-control" name="amount" value="{{{record.amount}}}">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-8">
+      <a href="/" class="btn btn-secondary">Back</a>
+      <button type="submit" class="btn btn-primary float-right">確認修改</button>
+    </div>
+  </div>
+</form>

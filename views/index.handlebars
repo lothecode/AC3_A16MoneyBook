@@ -22,8 +22,8 @@
         <h1 class="display-4 mx-auto" id="total">{{{total}}}</h1>
       </div>
     </div>
-    {{!-- expense list --}}
 
+    {{!-- expense list --}}
     <div class="row">
       <div class="col-auto mr-auto">
         <table class="table">
@@ -39,26 +39,32 @@
           {{#each records}}
           <tbody>
             <tr>
-              <th scope="row">{{{this.category}}}</th>
+              <th scope="row">
+                <span>{{#ifCond this.category '===' 'life'}}<i class="fas fa-home"></i>{{/ifCond}}</span>
+                <span>{{#ifCond this.category '===' 'travel'}}<i class="fas fa-shuttle-van"></i>{{/ifCond}}</span>
+                <span>{{#ifCond this.category '===' 'happy'}}<i class="fas fa-grin-beam"></i>{{/ifCond}}</span>
+                <span>{{#ifCond this.category '===' 'food'}}<i class="fas fa-utensils"></i>{{/ifCond}}</span>
+                <span>{{#ifCond this.category '===' 'others'}}<i class="fas fa-pen"></i>{{/ifCond}}</span>
+              </th>
               <td>{{{this.name}}}</td>
               <td>{{{this.date}}}</td>
               <td class="amount">${{{this.amount}}}</td>
-              <td><a href="/records/{{{this.id}}}/edit" class="btn btn-success">修改</a>
-
-                <form action="/records/{{{this.id}}}/delete?_method=DELETE" method="POST" style="display: inline;">
+              <td><a href="/records/{{{this._id}}}/edit" class="btn btn-success">修改</a>
+                <form action="/records/{{{this._id}}}/delete" method="POST" style="display: inline;">
                   <button type="submit" class="btn btn-danger">刪除</button></form>
               </td>
             </tr>
           </tbody>
           {{/each}}
         </table>
-
       </div>
     </div>
+    {{!-- add new one button --}}
     <div class="row">
       <div class="mx-auto mt-3">
-        <a href="/records/new" class="btn btn-primary mb-3">新增支出</a>
+        <a href="/new" class="btn btn-primary mb-3">新增支出</a>
       </div>
     </div>
+
   </div>
 </div>
