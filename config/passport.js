@@ -1,6 +1,7 @@
 const LocalStrategy = require('passport-local').Strategy
 const mongoose = require('mongoose')
 const User = require('../models/user')
+const bcrypt = require('bcryptjs')
 
 module.exports = passport => {
   // 宣告 LocalStrategy 物件，改用email 來查找 User 資料
@@ -12,12 +13,19 @@ module.exports = passport => {
         if (!user) {
           return done(null, false, { message: 'This email is not registered' })
         }
-        if (user.password != password) {
-          return done(null, false, { message: 'Email or password incorrect' })
-        }
-        return done(null, user)
+
+        bcrypt.compare(password, user.password, (err, isMatch) => {
+          if (err) throw err
+          if (isMatch) {
+            return done(null, user)
+          } else {
+            return done(null, false, { message: 'Email or password incorrect' })
+          }
+        })
       })
-    }))
+    })
+  )
+
   passport.serializeUser((user, done) => {
     done(null, user.id)
   })
