@@ -38,6 +38,7 @@ Handlebars.registerHelper('ifCond', function (v1, op, v2, options) {
 })
 
 // 載入路由器
+app.use('/users', require('./Routes/user'))
 app.use('/', require('./Routes/home'))
 app.use('/screen', require('./Routes/screen'))
 app.use('/records', require('./Routes/record'))
