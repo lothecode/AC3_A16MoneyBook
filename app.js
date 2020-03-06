@@ -17,7 +17,7 @@ app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
 app.set('view engine', 'handlebars')
 
 // 設定連線到 mongoDB的expense資料庫
-mongoose.connect('mongodb://localhost/expense', { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect('mongodb://localhost/expense', { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
 // mongoose 連線後透過 mongoose.connection 拿到 Connection 的物件
 const db = mongoose.connection
 // 連線異常及成功

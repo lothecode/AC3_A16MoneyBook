@@ -5,7 +5,7 @@ const { authenticated } = require('../config/auth')
 
 // List all expenses
 router.get('/', authenticated, (req, res) => {
-  Record.find()
+  Record.find({ userId: req.user._id })
     .lean()
     .exec((err, records) => {
       if (err) return console.error(err)
@@ -37,12 +37,12 @@ router.get('/new', authenticated, (req, res) => {
 
 // Add new expense action
 router.post('/', authenticated, (req, res) => {
-  const { name, category, date, amount } = req.body
   const record = new Record({
-    name,
-    category,
-    date,
-    amount
+    name: req.body.name,
+    category: req.body.category,
+    date: req.body.date,
+    amount: req.body.amount,
+    userId: req.user._id
   })
   record.save(err => {
     if (err) return console.error(err)
@@ -52,7 +52,7 @@ router.post('/', authenticated, (req, res) => {
 
 // see one's detail
 router.get('/:id', authenticated, (req, res) => {
-  Record.findOne({ _id: req.params.id })
+  Record.findOne({ _id: req.params.id, userId: req.user._id })
     .lean()
     .exec((err, record) => {
       if (err) return console.error(err)
@@ -62,7 +62,7 @@ router.get('/:id', authenticated, (req, res) => {
 
 // edit one expense
 router.get('/:id/edit', authenticated, (req, res) => {
-  Record.findOne({ _id: req.params.id })
+  Record.findOne({ _id: req.params.id, userId: req.user._id })
     .lean()
     .exec((err, record) => {
       if (err) return console.error(err)
@@ -72,7 +72,7 @@ router.get('/:id/edit', authenticated, (req, res) => {
 
 // edit one expense action
 router.put('/:id', authenticated, (req, res) => {
-  Record.findOne({ _id: req.params.id }, (err, record) => {
+  Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, record) => {
     if (err) return console.error(err)
     record.name = req.body.name,
       record.category = req.body.category,
@@ -87,7 +87,7 @@ router.put('/:id', authenticated, (req, res) => {
 
 //delete one expense action
 router.delete('/:id/delete', authenticated, (req, res) => {   // 之後改成delete
-  Record.findOne({ _id: req.params.id }, (err, record) => {
+  Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, record) => {
     if (err) return console.error(err)
     record.remove(err => {
       if (err) return console.error(err)

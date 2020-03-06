@@ -5,7 +5,7 @@ const { authenticated } = require('../config/auth')
 
 // sort by category
 router.get('/:screen', authenticated, (req, res) => {
-  Record.find()
+  Record.find({ userId: req.user._id })
     .lean()
     .exec((err, records) => {
       if (err) return console.error(err)
