@@ -1,9 +1,10 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../models/record')
+const { authenticated } = require('../config/auth')
 
 // List all expenses
-router.get('/', (req, res) => {
+router.get('/', authenticated, (req, res) => {
   Record.find()
     .lean()
     .exec((err, records) => {
@@ -17,7 +18,7 @@ router.get('/', (req, res) => {
 })
 
 // Add new expense
-router.get('/new', (req, res) => {
+router.get('/new', authenticated, (req, res) => {
   {
     const today = new Date
     const year = today.getFullYear()
@@ -35,7 +36,7 @@ router.get('/new', (req, res) => {
 })
 
 // Add new expense action
-router.post('/', (req, res) => {
+router.post('/', authenticated, (req, res) => {
   const { name, category, date, amount } = req.body
   const record = new Record({
     name,
@@ -50,7 +51,7 @@ router.post('/', (req, res) => {
 })
 
 // see one's detail
-router.get('/:id', (req, res) => {
+router.get('/:id', authenticated, (req, res) => {
   Record.findOne({ _id: req.params.id })
     .lean()
     .exec((err, record) => {
@@ -60,7 +61,7 @@ router.get('/:id', (req, res) => {
 })
 
 // edit one expense
-router.get('/:id/edit', (req, res) => {
+router.get('/:id/edit', authenticated, (req, res) => {
   Record.findOne({ _id: req.params.id })
     .lean()
     .exec((err, record) => {
@@ -70,7 +71,7 @@ router.get('/:id/edit', (req, res) => {
 })
 
 // edit one expense action
-router.put('/:id', (req, res) => {
+router.put('/:id', authenticated, (req, res) => {
   Record.findOne({ _id: req.params.id }, (err, record) => {
     if (err) return console.error(err)
     record.name = req.body.name,
@@ -85,7 +86,7 @@ router.put('/:id', (req, res) => {
 })
 
 //delete one expense action
-router.delete('/:id/delete', (req, res) => {   // 之後改成delete
+router.delete('/:id/delete', authenticated, (req, res) => {   // 之後改成delete
   Record.findOne({ _id: req.params.id }, (err, record) => {
     if (err) return console.error(err)
     record.remove(err => {
