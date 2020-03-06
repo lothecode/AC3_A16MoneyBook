@@ -33,7 +33,7 @@ router.post('/register', (req, res) => {
       })
       newUser.save()
         .then(user => {
-          res.render('login')
+          res.redirect('login')
         })
         .catch(err => console.log(err))
     }

@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
 const Handlebars = require('handlebars')
 const methodOverride = require('method-override')
+const session = require('express-session')
 
 // 載入model
 const Record = require('./models/record')
@@ -17,6 +18,11 @@ app.set('view engine', 'handlebars')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static('public'))
 app.use(methodOverride('_method'))
+app.use(session({
+  secret: 'secret key',
+  resave: false,
+  saveUninitialized: true
+}))
 
 // 設定連線到 mongoDB的expense資料庫
 mongoose.connect('mongodb://localhost/expense', { useNewUrlParser: true, useUnifiedTopology: true })
