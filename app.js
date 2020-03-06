@@ -8,6 +8,7 @@ const methodOverride = require('method-override')
 
 // 載入model
 const Record = require('./models/record')
+const User = require('./models/user')
 
 // 告訴 express 使用 handlebars 當作 template engine 並預設 layout 是 main
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
