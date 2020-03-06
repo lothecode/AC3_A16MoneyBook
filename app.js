@@ -7,6 +7,7 @@ const Handlebars = require('handlebars')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const passport = require('passport')
+const flash = require('connect-flash')
 
 // 判別開發環境
 if (process.env.NODE_ENV !== 'production') {
@@ -41,6 +42,7 @@ app.use(session({
 // 要在 middleware 中使用 Passport，先要透過 passport.initialize() 來初始化 Passport。然後用 passport.session() 來啟動 session 功能。注意：passport.session() 要放在 session() 之後，才能確保執行順序正確。
 app.use(passport.initialize())
 app.use(passport.session())
+app.use(flash())
 
 // 載入 Passport config
 require('./config/passport')(passport)
@@ -48,6 +50,8 @@ require('./config/passport')(passport)
 app.use((req, res, next) => {
   res.locals.user = req.user
   res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.success_msg = req.flash('success_msg')
+  res.locals.warning_msg = req.flash('warning_msg')
   next()
 })
 
