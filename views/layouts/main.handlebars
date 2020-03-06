@@ -19,11 +19,11 @@
       <a class="navbar-brand" href="/records">
         家庭記帳本
       </a>
-      {{!-- {{#if isAuthenticated}} --}}
+      {{#if isAuthenticated}}
       <a href="/users/logout" class="btn btn-outline-info">Logout</a>
-      {{!-- {{else}} --}}
-      {{!-- <a href="/users/login" class="btn btn-outline-info">Login</a> --}}
-      {{!-- {{/if}} --}}
+      {{else}}
+      <a href="/users/login" class="btn btn-outline-info">Login</a>
+      {{/if}}
     </div>
   </nav>
 
