@@ -3,6 +3,7 @@ const router = express.Router()
 const Record = require('../models/record')
 const { authenticated } = require('../config/auth')
 
+
 // List all expenses
 router.get('/', authenticated, (req, res) => {
   Record.find({ userId: req.user._id })
