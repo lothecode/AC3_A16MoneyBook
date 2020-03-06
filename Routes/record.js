@@ -36,11 +36,12 @@ router.get('/new', (req, res) => {
 
 // Add new expense action
 router.post('/', (req, res) => {
+  const { name, category, date, amount } = req.body
   const record = new Record({
-    name: req.body.name,
-    category: req.body.category,
-    date: req.body.date,
-    amount: req.body.amount,
+    name,
+    category,
+    date,
+    amount
   })
   record.save(err => {
     if (err) return console.error(err)
