@@ -8,6 +8,12 @@ const methodOverride = require('method-override')
 const session = require('express-session')
 const passport = require('passport')
 
+// 判別開發環境
+if (process.env.NODE_ENV !== 'production') {
+  // 如果不是 production 模式
+  require('dotenv').config()
+  // 使用 dotenv 讀取 .env 檔案
+}
 // 載入model
 const Record = require('./models/record')
 const User = require('./models/user')
@@ -50,6 +56,7 @@ app.use('/users', require('./Routes/user'))
 app.use('/', require('./Routes/home'))
 app.use('/screen', require('./Routes/screen'))
 app.use('/records', require('./Routes/record'))
+app.use('/auth', require('./Routes/auths'))
 
 // Handlebars Helper
 Handlebars.registerHelper('ifCond', function (v1, op, v2, options) {
