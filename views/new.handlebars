@@ -19,11 +19,9 @@
     <label for="select" class="col-md-3 col-form-label text-center">類別* : </label>
     <div class="col-md-8">
       <select class="form-control" name="category">
-        <option value="life">家居物業</option>
-        <option value="travel">交通出行</option>
-        <option value="happy">休閒娛樂</option>
-        <option value="food">餐飲食品</option>
-        <option value="others">其他</option>
+        {{#each categories}}
+        <option value="{{{this.category}}}">{{{this.category_ch}}}</option>
+        {{/each}}
       </select>
     </div>
   </div>

@@ -9,15 +9,18 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
     integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-  <title>Papa's moneybook</title>
+  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+TC&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/stylesheets/style.css">
+
+  <title>My moneybook</title>
 </head>
 
 <body>
   <!-- navbar -->
   <nav class="navbar navbar-light bg-light">
     <div class="container">
-      <a class="navbar-brand" href="/records">
-        家庭記帳本
+      <a class="navbar-brand text-info" href="/records">
+        {{{user.name}}} 的花錢記錄
       </a>
       {{#if isAuthenticated}}
       <a href="/users/logout" class="btn btn-outline-info">Logout</a>
@@ -27,11 +30,7 @@
     </div>
   </nav>
 
-  <div class="container">
-    {{{body}}}
-
-  </div>
-
+  {{{body}}}
 
 
   {{!-- bootstrap js --}}

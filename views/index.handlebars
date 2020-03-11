@@ -1,73 +1,66 @@
-<div class="row border">
-  <div class="mx-auto mt-4">
-    {{!-- category select dropdown  --}}
-    <div class="btn-group btn-block my-3">
-      <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuLink" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        類別
-      </button>
-      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="/screen/life">家居物業</a>
-        <a class="dropdown-item" href="/screen/travel">交通出行</a>
-        <a class="dropdown-item" href="/screen/happy">休閒娛樂</a>
-        <a class="dropdown-item" href="/screen/food">餐飲食品</a>
-        <a class="dropdown-item" href="/screen/others">其他</a>
-        <a class="dropdown-item" href="/screen/all">全部類別</a>
-      </div>
-    </div>
+<div class="col-md-6 mx-auto mt-4 border">
+  {{!-- category select dropdown  --}}
+  <div class="text-right my-3 d-flex">
 
-    {{!-- total amount --}}
-    <div class="row">
-      <div class="col-auto">
-        <p class="lead">總金額:</p>
-      </div>
-      <div class="col-auto mx-auto">
-        <h1 class="display-4 mx-auto" id="total">{{{total}}}</h1>
-      </div>
+    <button class="btn btn-secondary dropdown-toggle align-right w-25 ml-5" type="button">
+      月份先放位置
+    </button>
+    <button class="btn btn-secondary dropdown-toggle w-25 mr-5 ml-auto" type="button" id="dropdownMenuLink"
+      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      {{#if showCat}}
+      {{{showCat}}}
+      {{else}}
+      類別 (全部)
+      {{/if}}
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      {{#each categories}}
+      <a class="dropdown-item" href="/screen/{{{this.category}}}">{{{this.category_ch}}}</a>
+      {{/each}}
+      <a class="dropdown-item" href="/screen/all">全部類別</a>
     </div>
+  </div>
 
-    {{!-- expense list --}}
-    <div class="row">
-      <div class="col-auto mr-auto">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">類別</th>
-              <th scope="col">項目名稱</th>
-              <th scope="col">日期</th>
-              <th scope="col">金額</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          {{#each records}}
-          <tbody>
-            <tr>
-              <th scope="row">
-                <span>{{#ifCond this.category '===' 'life'}}<i class="fas fa-home"></i>{{/ifCond}}</span>
-                <span>{{#ifCond this.category '===' 'travel'}}<i class="fas fa-shuttle-van"></i>{{/ifCond}}</span>
-                <span>{{#ifCond this.category '===' 'happy'}}<i class="fas fa-grin-beam"></i>{{/ifCond}}</span>
-                <span>{{#ifCond this.category '===' 'food'}}<i class="fas fa-utensils"></i>{{/ifCond}}</span>
-                <span>{{#ifCond this.category '===' 'others'}}<i class="fas fa-pen"></i>{{/ifCond}}</span>
-              </th>
-              <td>{{{this.name}}}</td>
-              <td>{{{this.date}}}</td>
-              <td class="amount">${{{this.amount}}}</td>
-              <td><a href="/records/{{{this._id}}}/edit" class="btn btn-success">修改</a>
-                <form action="/records/{{{this._id}}}/delete?_method=DELETE" method="POST" style="display: inline;">
-                  <button type="submit" class="btn btn-danger">刪除</button></form>
-              </td>
-            </tr>
-          </tbody>
-          {{/each}}
-        </table>
-      </div>
-    </div>
-    {{!-- add new one button --}}
-    <div class="row">
-      <div class="mx-auto mt-3">
-        <a href="/records/new" class="btn btn-primary mb-3">新增支出</a>
-      </div>
-    </div>
+  {{!-- total amount --}}
+  <div class="d-flex flex-column mb-4">
+    {{!-- Apply display utilities to create a flexbox container and transform direct children elements, flex-column 將裡面2項排成直的 --}}
+    <h4 class="mx-auto totalA">總金額 :</h4>
+    {{!-- </div>
+    <div class="col-auto mx-auto"> --}}
+    <h1 class="display-3 mx-auto" id="total">{{{total}}}</h1>
+  </div>
 
+  {{!-- add new one button--}}
+  <div class="text-center">
+    <a href="/records/new" class="btn w-50 mb-4 addbtn">新增支出</a>
+  </div>
+
+  {{!-- expense list --}}
+
+  <div class="col-auto mr-auto">
+    <table class="table mx-auto mb-5">
+      {{#each records}}
+      <tbody class="col-sm-12 m-auto">
+        <tr>
+          <th scope="row" class="text-right">
+            <h2><i class="{{{this.icon}}}"></i></h2>
+          </th>
+          <td>
+            <div class="colum pt-1">
+              <h4>{{{this.name}}}</h4>
+              <p class="date my-1">{{{this.date}}}</p>
+            </div>
+          </td>
+          <td class="amount">
+            <h4>${{{this.amount}}}</h4>
+          </td>
+          <td><a href="/records/{{{this._id}}}/edit" class="btn btn-success my-1 mr-1">修改</a>
+            <form action="/records/{{{this._id}}}/delete?_method=DELETE" method="POST" style="display: inline;">
+              <button type="submit" class="btn btn-danger my-1">刪除</button></form>
+          </td>
+        </tr>
+      </tbody>
+      {{/each}}
+    </table>
   </div>
 </div>

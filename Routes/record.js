@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const Record = require('../models/record')
+const categories = require('../data/categories.json')
 const { authenticated } = require('../config/auth')
 
 
@@ -13,8 +14,10 @@ router.get('/', authenticated, (req, res) => {
       let total = 0
       records.forEach(item => {
         total += item.amount
+        item.icon = categories[item.category].icon
       })
-      return res.render('index', { records, total })
+
+      return res.render('index', { categories, records, total })
     })
 })
 
@@ -32,7 +35,7 @@ router.get('/new', authenticated, (req, res) => {
       date = `0${date}`
     }
     let listdate = `${year}-${month}-${date}`
-    return res.render('new', { listdate })
+    return res.render('new', { categories, listdate })
   }
 })
 
@@ -51,23 +54,13 @@ router.post('/', authenticated, (req, res) => {
   })
 })
 
-// see one's detail
-router.get('/:id', authenticated, (req, res) => {
-  Record.findOne({ _id: req.params.id, userId: req.user._id })
-    .lean()
-    .exec((err, record) => {
-      if (err) return console.error(err)
-      return res.render('detail', { record })
-    })
-})
-
 // edit one expense
 router.get('/:id/edit', authenticated, (req, res) => {
   Record.findOne({ _id: req.params.id, userId: req.user._id })
     .lean()
     .exec((err, record) => {
       if (err) return console.error(err)
-      return res.render('edit', { record })
+      return res.render('edit', { categories, record })
     })
 })
 
@@ -81,7 +74,7 @@ router.put('/:id', authenticated, (req, res) => {
       record.amount = req.body.amount,
       record.save((err) => {
         if (err) return console.error(err)
-        return res.redirect(`/records/${req.params.id}`)
+        return res.redirect(`/records`)
       })
   })
 })

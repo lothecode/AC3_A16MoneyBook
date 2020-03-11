@@ -1,0 +1,27 @@
+{
+  "life": {
+    "category": "life",
+    "category_ch": "家居物業",
+    "icon": "fas fa-home"
+  },
+  "travel": {
+    "category": "travel",
+    "category_ch": "交通出行",
+    "icon": "fas fa-shuttle-van"
+  },
+  "happy": {
+    "category": "happy",
+    "category_ch": "休閒娛樂",
+    "icon": "fas fa-grin-beam"
+  },
+  "food": {
+    "category": "food",
+    "category_ch": "餐飲食品",
+    "icon": "fas fa-utensils"
+  },
+  "others": {
+    "category": "others",
+    "category_ch": "其他",
+    "icon": "fas fa-pen"
+  }
+}
