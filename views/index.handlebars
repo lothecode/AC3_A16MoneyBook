@@ -1,23 +1,49 @@
 <div class="col-md-6 mx-auto mt-4 border">
   {{!-- category select dropdown  --}}
-  <div class="text-right my-3 d-flex">
 
-    <button class="btn btn-secondary dropdown-toggle align-right w-25 ml-5" type="button">
-      月份先放位置
-    </button>
-    <button class="btn btn-secondary dropdown-toggle w-25 mr-5 ml-auto" type="button" id="dropdownMenuLink"
-      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      {{#if showCat}}
-      {{{showCat}}}
-      {{else}}
-      類別 (全部)
-      {{/if}}
-    </button>
-    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-      {{#each categories}}
-      <a class="dropdown-item" href="/screen/{{{this.category}}}">{{{this.category_ch}}}</a>
-      {{/each}}
-      <a class="dropdown-item" href="/screen/all">全部類別</a>
+  <div class="text-right my-3 d-flex">
+    <div class="dropdown mr-1 w-25 ml-5 ">
+      <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+        {{#if showMonth}}
+        {{showMonth}}
+        {{else}}
+        月份 (全部)
+        {{/if}}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-01-">一月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-02-">二月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-03-">三月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-04-">四月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-05-">五月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-06-">六月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-07-">七月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-08-">八月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-09-">九月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-10-">十月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-11-">十一月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-12-">十二月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=">全部月份</a>
+      </div>
+    </div>
+    <div class="dropdown mr-1 w-25 mr-5 mx-auto">
+      <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuLink" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        {{#if showCategory}}
+        {{showCategory}}
+        {{else}}
+        類別 (全部)
+        {{/if}}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="/screen?cat=life&month={{{selectMonth}}}">家居物業</a>
+        <a class="dropdown-item" href="/screen?cat=travel&month={{{selectMonth}}}">交通出行</a>
+        <a class="dropdown-item" href="/screen?cat=happy&month={{{selectMonth}}}">休閒娛樂</a>
+        <a class="dropdown-item" href="/screen?cat=food&month={{{selectMonth}}}">餐飲食品</a>
+        <a class="dropdown-item" href="/screen?cat=others&month={{{selectMonth}}}">其他</a>
+        <a class="dropdown-item" href="/screen?cat=&month={{{selectMonth}}}">全部類別</a>
+      </div>
     </div>
   </div>
 
