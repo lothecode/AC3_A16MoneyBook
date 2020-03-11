@@ -1,0 +1,12 @@
+{
+  "namelist": [
+    {
+      "email": "Amy@example.com",
+      "password": "12345"
+    },
+    {
+      "email": "Bob@example.com",
+      "password": "12345"
+    }
+  ]
+}

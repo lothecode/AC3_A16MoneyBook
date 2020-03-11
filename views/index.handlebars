@@ -1,8 +1,7 @@
-<div class="col-md-6 mx-auto mt-4 border">
-  {{!-- category select dropdown  --}}
-
-  <div class="text-right my-3 d-flex">
-    <div class="dropdown mr-1 w-25 ml-5 ">
+<div class="col-md-7 mx-auto mt-4">
+  {{!-- category select dropdowns  --}}
+  <div class="mb-5 text-center d-flex">
+    <div class="dropdown mx-auto">
       <button type="button" class="btn btn-secondary dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false" data-offset="10,20">
         {{#if showMonth}}
@@ -27,7 +26,8 @@
         <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=">全部月份</a>
       </div>
     </div>
-    <div class="dropdown mr-1 w-25 mr-5 mx-auto">
+
+    <div class="dropdown mx-auto">
       <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuLink" data-toggle="dropdown"
         aria-haspopup="true" aria-expanded="false">
         {{#if showCategory}}
@@ -45,48 +45,67 @@
         <a class="dropdown-item" href="/screen?cat=&month={{{selectMonth}}}">全部類別</a>
       </div>
     </div>
+    <div class="dropdown mx-auto">
+      <button class="btn btn-secondary dropdown-toggle " type="button" id="dropdownMenuLink" data-toggle="dropdown"
+        aria-haspopup="true" aria-expanded="false">
+        {{#if showOrder}}
+        {{{showOrder}}}
+        {{else}}
+        時間或金額排序
+        {{/if}}
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month={{{selectMonth}}}&sort=dateAsc">時間
+          (舊->新)</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month={{{selectMonth}}}&sort=dateDesc">時間
+          (新->舊)</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month={{{selectMonth}}}&sort=amountDesc">金額
+          (多->少)</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month={{{selectMonth}}}&sort=amountAsc">金額
+          (少->多)</a>
+      </div>
+    </div>
   </div>
 
   {{!-- total amount --}}
   <div class="d-flex flex-column mb-4">
     {{!-- Apply display utilities to create a flexbox container and transform direct children elements, flex-column 將裡面2項排成直的 --}}
     <h4 class="mx-auto totalA">總金額 :</h4>
-    {{!-- </div>
-    <div class="col-auto mx-auto"> --}}
     <h1 class="display-3 mx-auto" id="total">{{{total}}}</h1>
   </div>
 
   {{!-- add new one button--}}
   <div class="text-center">
-    <a href="/records/new" class="btn w-50 mb-4 addbtn">新增支出</a>
+    <a href="/records/new" class="btn w-50 mb-2 p-0 addbtn">
+      新增支出
+    </a>
   </div>
 
   {{!-- expense list --}}
-
-  <div class="col-auto mr-auto">
-    <table class="table mx-auto mb-5">
-      {{#each records}}
-      <tbody class="col-sm-12 m-auto">
-        <tr>
-          <th scope="row" class="text-right">
-            <h2><i class="{{{this.icon}}}"></i></h2>
-          </th>
-          <td>
-            <div class="colum pt-1">
-              <h4>{{{this.name}}}</h4>
-              <p class="date my-1">{{{this.date}}}</p>
-            </div>
-          </td>
-          <td class="amount">
-            <h4>${{{this.amount}}}</h4>
-          </td>
-          <td><a href="/records/{{{this._id}}}/edit" class="btn btn-success my-1 mr-1">修改</a>
-            <form action="/records/{{{this._id}}}/delete?_method=DELETE" method="POST" style="display: inline;">
-              <button type="submit" class="btn btn-danger my-1">刪除</button></form>
-          </td>
-        </tr>
-      </tbody>
-      {{/each}}
-    </table>
-  </div>
+  <table class="table mb-5">
+    {{#each records}}
+    <tbody class="col-md-12 m-auto">
+      <tr>
+        <th scope="row" class="text-center">
+          <i class="{{{this.icon}}} icon"></i>
+        </th>
+        <td>
+          <div class="colum pt-1">
+            <h4>{{{this.name}}}</h4>
+            <p class="date my-1">{{{this.date}}}</p>
+          </div>
+        </td>
+        <td class="align-middle amount">
+          <h4>${{{this.amount}}}</h4>
+        </td>
+        <td class="d-flex justify-content-end pt-4">
+          <a href="/records/{{{this._id}}}/edit" class="btn btn-success my-1 mr-1">修改</a>
+          <form action="/records/{{{this._id}}}/delete?_method=DELETE" method="POST" style="display: inline;">
+            <button type="submit" class="btn btn-danger my-1">刪除</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+    {{/each}}
+  </table>
 </div>

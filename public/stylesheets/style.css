@@ -5,8 +5,15 @@
 .addbtn {
   color:#0021a5;
   background-color: #fa4616;
+  font-size: 1.5rem;
 }
 
 #total {
   color:#0021a5;
+}
+
+.icon {
+  color:#feba02;
+  /* border: 1px black solid; */
+  font-size: 3.5rem;
 }
