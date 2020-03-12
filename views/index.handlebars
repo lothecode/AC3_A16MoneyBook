@@ -7,7 +7,7 @@
         {{#if showMonth}}
         {{showMonth}}
         {{else}}
-        月份 (全部)
+        月份(全部)
         {{/if}}
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
@@ -33,7 +33,7 @@
         {{#if showCategory}}
         {{showCategory}}
         {{else}}
-        類別 (全部)
+        類別(全部)
         {{/if}}
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -51,7 +51,7 @@
         {{#if showOrder}}
         {{{showOrder}}}
         {{else}}
-        時間或金額排序
+        選擇排序
         {{/if}}
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
@@ -71,12 +71,12 @@
   <div class="d-flex flex-column mb-4">
     {{!-- Apply display utilities to create a flexbox container and transform direct children elements, flex-column 將裡面2項排成直的 --}}
     <h4 class="mx-auto totalA">總金額 :</h4>
-    <h1 class="display-3 mx-auto" id="total">{{{total}}}</h1>
+    <h2 class="mx-auto" id="total">{{{total}}}</h2>
   </div>
 
   {{!-- add new one button--}}
   <div class="text-center">
-    <a href="/records/new" class="btn w-50 mb-2 p-0 addbtn">
+    <a href="/records/new" class="btn w-50 mb-3 p-0 addbtn">
       新增支出
     </a>
   </div>
@@ -91,7 +91,7 @@
         </th>
         <td>
           <div class="colum pt-1">
-            <h4>{{{this.name}}}</h4>
+            <h5>{{{this.name}}}</h5>
             <p class="date my-1">{{{this.date}}}</p>
           </div>
         </td>

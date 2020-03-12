@@ -1,0 +1,165 @@
+{
+  "records": [
+    {
+      "id": 1,
+      "name": "電影火星任務",
+      "category": "happy",
+      "date": "2019-05-26",
+      "amount": 260
+    },
+    {
+      "id": 2,
+      "name": "除草",
+      "category": "others",
+      "date": "2019-09-20",
+      "amount": 1200
+    },
+    {
+      "id": 3,
+      "name": "火車票去池上",
+      "category": "travel",
+      "date": "2019-04-28",
+      "amount": 864
+    },
+    {
+      "id": 4,
+      "name": "選手之夜",
+      "category": "food",
+      "date": "2019-05-29",
+      "amount": 760
+    },
+    {
+      "id": 5,
+      "name": "租金",
+      "category": "life",
+      "date": "2020-01-30",
+      "amount": 10000
+    },
+    {
+      "id": 6,
+      "name": "2本書",
+      "category": "others",
+      "date": "2020-01-01",
+      "amount": 640
+    },
+    {
+      "id": 7,
+      "name": "民宿",
+      "category": "travel",
+      "date": "2020-02-01",
+      "amount": 1300
+    },
+    {
+      "id": 8,
+      "name": "零食及米",
+      "category": "food",
+      "date": "2020-02-02",
+      "amount": 376
+    },
+    {
+      "id": 9,
+      "name": "菜及肉",
+      "category": "food",
+      "date": "2020-02-13",
+      "amount": 90
+    },
+    {
+      "id": 10,
+      "name": "大阪機票",
+      "category": "travel",
+      "date": "2019-11-08",
+      "amount": 7800
+    },
+    {
+      "id": 11,
+      "name": "水果",
+      "category": "food",
+      "date": "2020-02-04",
+      "amount": 82
+    },
+    {
+      "id": 12,
+      "name": "泡沫紅茶店",
+      "category": "happy",
+      "date": "2019-08-05",
+      "amount": 60
+    },
+    {
+      "id": 13,
+      "name": "打彈珠",
+      "category": "happy",
+      "date": "2019-05-13",
+      "amount": 30
+    },
+    {
+      "id": 14,
+      "name": "冰淇淋",
+      "category": "food",
+      "date": "2019-05-13",
+      "amount": 60
+    },
+    {
+      "id": 15,
+      "name": "豆花",
+      "category": "food",
+      "date": "2020-02-03",
+      "amount": 80
+    },
+    {
+      "id": 16,
+      "name": "雞腿飯",
+      "category": "food",
+      "date": "2020-02-04",
+      "amount": 120
+    },
+    {
+      "id": 17,
+      "name": "網球課",
+      "category": "happy",
+      "date": "2019-07-16",
+      "amount": 500
+    },
+    {
+      "id": 18,
+      "name": "管理費",
+      "category": "life",
+      "date": "2020-03-07",
+      "amount": 570
+    },
+    {
+      "id": 19,
+      "name": "買雜貨",
+      "category": "life",
+      "date": "2020-02-28",
+      "amount": 346
+    },
+    {
+      "id": 20,
+      "name": "電影玩具總動員",
+      "category": "happy",
+      "date": "2019-12-09",
+      "amount": 260
+    },
+    {
+      "id": 21,
+      "name": "機車換機油",
+      "category": "others",
+      "date": "2019-10-13",
+      "amount": 300
+    },
+    {
+      "id": 22,
+      "name": "看醫生",
+      "category": "others",
+      "date": "2019-11-14",
+      "amount": 460
+    },
+    {
+      "id": 23,
+      "name": "買口罩",
+      "category": "life",
+      "date": "2020-03-12",
+      "amount": 15
+    }
+  ]
+}

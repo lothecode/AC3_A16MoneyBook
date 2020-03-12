@@ -10,10 +10,16 @@
 
 #total {
   color:#0021a5;
+  font-size: 3.5rem;
 }
 
 .icon {
   color:#feba02;
   /* border: 1px black solid; */
   font-size: 3.5rem;
+}
+
+.banner {
+  /* align-items: center; */
+  color: #fa4616;
 }
