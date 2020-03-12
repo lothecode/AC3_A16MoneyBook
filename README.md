@@ -23,13 +23,8 @@
 - 開啟瀏覽器，輸入http://localhost:3000 ，即可使用線上記帳本網站。
 
 ### 測試帳號如下:
-name : 孫小毛
-email : user1@example.com
-password : 12345678
-&
-name : 唐老鴨
-email : user2@example.com
-password : 12345678
+> name : 孫小毛, email : user1@example.com, password : 12345678  
+> name : 唐老鴨 ,email : user2@example.com, password : 12345678
 
 
 ### 環境說明環境配置
