@@ -2,8 +2,8 @@
   "namelist": [
     {
       "name": "孫小毛",
-      "email": "mou@example.com",
-      "password": "123456",
+      "email": "user1@example.com",
+      "password": "12345678",
       "select": [
         1,
         2,
@@ -24,8 +24,8 @@
     },
     {
       "name": "唐老鴨",
-      "email": "don@example.com",
-      "password": "123456",
+      "email": "user2@example.com",
+      "password": "12345678",
       "select": [
         4,
         5,
