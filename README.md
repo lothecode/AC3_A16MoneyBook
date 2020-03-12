@@ -16,7 +16,7 @@
 
 ### 安裝流程
 - Clone or download 此專案至本機電腦
-- git clone https://github.com/lothcode/
+- git clone https://github.com/lothecode/AC3_A16MoneyBook.git
 - 安裝 npm 套件，根據package.json內紀錄之套件進行安裝。
 - 執行npm run seeder導入種子資料, npm run seeder
 - 待terminal將資料新增至資料庫後啟動專案，並監聽伺服器, npm run start
