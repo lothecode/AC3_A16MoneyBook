@@ -3,7 +3,7 @@ const app = express()
 const mongoose = require('mongoose')
 const exphbs = require('express-handlebars')
 const bodyParser = require('body-parser')
-const Handlebars = require('handlebars')
+// const Handlebars = require('handlebars')
 const methodOverride = require('method-override')
 const session = require('express-session')
 const passport = require('passport')
@@ -63,17 +63,7 @@ app.use('/screen', require('./Routes/screen'))
 app.use('/records', require('./Routes/record'))
 app.use('/auth', require('./Routes/auths'))
 
-// Handlebars Helper
-Handlebars.registerHelper('ifCond', function (v1, op, v2, options) {
-  switch (op) {
-    case '===':
-      return (v1 === v2) ? options.fn(this) : options.inverse(this)
-    case '!==':
-      return (v1 !== v2) ? options.fn(this) : options.inverse(this)
-    default:
-      return options.inverse(this);
-  }
-})
+
 
 app.listen(process.env.PORT || 3000, () => {
   console.log('APP is running on express')

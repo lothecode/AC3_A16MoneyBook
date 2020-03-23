@@ -7,12 +7,12 @@ const bcrypt = require('bcryptjs')
 module.exports = passport => {
   // 宣告 LocalStrategy 物件，改用email 來查找 User 資料
   passport.use(
-    new LocalStrategy({ usernameField: 'email' }, (email, password, done) => {
+    new LocalStrategy({ usernameField: 'email', passReqToCallback: true }, (req, email, password, done) => {
       User.findOne({
         email: email
       }).then(user => {
         if (!user) {
-          return done(null, false, { message: 'This email is not registered' })
+          return done(null, false, req.flash('warning_msg', '輸入的email未註冊'))
         }
 
         bcrypt.compare(password, user.password, (err, isMatch) => {
@@ -20,7 +20,7 @@ module.exports = passport => {
           if (isMatch) {
             return done(null, user)
           } else {
-            return done(null, false, { message: 'Email or password incorrect' })
+            return done(null, false, req.flash('warning_msg', 'Email or password 錯誤!'))
           }
         })
       })

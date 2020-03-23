@@ -1,4 +1,5 @@
 const express = require('express')
+const Handlebars = require('handlebars')
 const router = express.Router()
 const Record = require('../models/record')
 const categories = require('../data/categories.json')
@@ -16,7 +17,6 @@ router.get('/', authenticated, (req, res) => {
         total += item.amount
         item.icon = categories[item.category].icon
       })
-
       return res.render('index', { categories, records, total })
     })
 })
@@ -65,7 +65,7 @@ router.get('/:id/edit', authenticated, (req, res) => {
 })
 
 // edit one expense action
-router.put('/:id', authenticated, (req, res) => {
+router.put('/:id', authenticated, (req, res) => { // 先用post, 之後改成put
   Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, record) => {
     if (err) return console.error(err)
     record.name = req.body.name,
@@ -80,7 +80,7 @@ router.put('/:id', authenticated, (req, res) => {
 })
 
 //delete one expense action
-router.delete('/:id/delete', authenticated, (req, res) => {   // 之後改成delete
+router.delete('/:id/delete', authenticated, (req, res) => {   // 先用post, 之後改成delete
   Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, record) => {
     if (err) return console.error(err)
     record.remove(err => {
@@ -88,6 +88,18 @@ router.delete('/:id/delete', authenticated, (req, res) => {   // 之後改成del
       return res.redirect('/records')
     })
   })
+})
+
+// Handlebars Helper 用來在template裡做if equal or not的判斷式, 原本handlebars只能做if true/false的判斷, 本專案沒有用到!==這個condition
+Handlebars.registerHelper('ifCond', function (v1, op, v2, options) {
+  switch (op) {
+    case '===':
+      return (v1 === v2) ? options.fn(this) : options.inverse(this)
+    case '!==':
+      return (v1 !== v2) ? options.fn(this) : options.inverse(this)
+    default:
+      return options.inverse(this);
+  }
 })
 
 module.exports = router

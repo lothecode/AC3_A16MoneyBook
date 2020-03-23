@@ -19,6 +19,7 @@
     <label for="select" class="col-md-3 col-form-label text-center">類別* : </label>
     <div class="col-md-8">
       <select class="form-control" name="category">
+        {{!-- handlebars helper 來做ifCond的判斷, helper放在record.js裡 --}}
         <option value="life" {{#ifCond record.category '===' 'life'}} selected {{/ifCond}}>家居物業</option>
         <option value="travel" {{#ifCond record.category '===' 'travel'}} selected {{/ifCond}}>交通出行</option>
         <option value="happy" {{#ifCond record.category '===' 'happy'}} selected {{/ifCond}}>休閒娛樂</option>

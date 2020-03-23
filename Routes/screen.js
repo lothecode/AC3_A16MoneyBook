@@ -15,6 +15,7 @@ router.get('/?', authenticated, (req, res) => {
   let querys = { userId }
   let showCategory = '類別 (全部)'
   let showMonth = '月份 (全部)'
+  // 用keywords作為判斷條件, 將要篩選or排序的條件加入querys這個{}中, 成為後面find的條件式
   if (selectCategory === '' && selectMonth !== '') {
     querys = { userId, date: { $regex: findMonth } }
     showMonth = months[selectMonth].month_ch
@@ -52,10 +53,7 @@ router.get('/?', authenticated, (req, res) => {
         total += item.amount
         item.icon = categories[item.category].icon
       })
-      // 選擇類別後保留選項在畫面 ??
-
       return res.render('index', { categories, records, total, selectCategory, selectMonth, showMonth, showCategory, showOrder })
-
     })
 })
 module.exports = router
