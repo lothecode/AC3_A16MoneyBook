@@ -28,40 +28,31 @@ router.get('/new', authenticated, (req, res) => {
     const today = new Date
     const year = today.getFullYear()
     let month = today.getMonth() + 1
-    let date = today.getDate()
+    let day = today.getDate()
     if (month < 10) {
       month = `0${month}`
     }
-    if (date < 10) {
-      date = `0${date}`
+    if (day < 10) {
+      day = `0${day}`
     }
-    const listdate = `${year}-${month}-${date}`
-    return res.render('new', { categories, listdate })
+    const date = `${year}-${month}-${day}`
+    return res.render('new', { categories, date })
   }
 })
 
 // Add new expense action
 router.post('/', authenticated, (req, res) => {
-  if (req.body.amount <= 0 || !Number(req.body.amount)) {
-    return res.render('new', {
-      name: req.body.name,
-      category: req.body.category,
-      listdate: req.body.date,
-      warning_msg: '金額必需為大於0的數字'
-    })
-  } else {
-    const record = new Record({
-      name: req.body.name,
-      category: req.body.category,
-      date: req.body.date,
-      amount: req.body.amount,
-      userId: req.user._id
-    })
-    record.save(err => {
-      if (err) return console.error(err)
-      return res.redirect('/')
-    })
-  }
+  const record = new Record({
+    name: req.body.name,
+    category: req.body.category,
+    date: req.body.date,
+    amount: req.body.amount,
+    userId: req.user._id
+  })
+  record.save(err => {
+    if (err) return console.error(err)
+    return res.redirect('/')
+  })
 })
 
 // edit one expense
@@ -70,7 +61,7 @@ router.get('/:id/edit', authenticated, (req, res) => {
     .lean()
     .exec((err, record) => {
       if (err) return console.error(err)
-      return res.render('edit', { category: record.category, name: record.name, listdate: record.date, amount: record.amount, record })
+      return res.render('edit', { record })
     })
 })
 

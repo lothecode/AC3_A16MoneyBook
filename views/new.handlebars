@@ -4,8 +4,6 @@
     <h2 class="col-md-8">請輸入您的支出</h2>
   </div>
 
-
-
   <div class="form-group row">
     <label for="name" class="col-md-3 col-form-label text-center">名稱* : </label>
     <div class="col-md-8">
@@ -15,7 +13,7 @@
   <div class="form-group row">
     <label for="date" class="col-md-3 col-form-label text-center">日期* : </label>
     <div class="col-md-8">
-      <input type="date" class="form-control" name="date" value="{{{listdate}}}">
+      <input type="date" class="form-control" name="date" value="{{{date}}}">
     </div>
   </div>
   <div class="form-group row">
@@ -43,15 +41,7 @@
   <div class="form-group row">
     <label for="amount" class="col-md-3 col-form-label text-center">金額* : </label>
     <div class="col-md-8">
-      <input type="text" class="form-control" name="amount" required>
-      {{#if warning_msg}}
-      <div class="alert alert-danger alert-dismissible fade show mt-1 p-1" role="alert">
-        {{{warning_msg}}}
-        <button type="button" class="close p-1" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      {{/if}}
+      <input type="number" min="1" class="form-control" name="amount" required>
     </div>
   </div>
   <div class="row">
