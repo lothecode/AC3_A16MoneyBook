@@ -34,24 +34,33 @@ router.get('/new', authenticated, (req, res) => {
     if (date < 10) {
       date = `0${date}`
     }
-    let listdate = `${year}-${month}-${date}`
+    const listdate = `${year}-${month}-${date}`
     return res.render('new', { categories, listdate })
   }
 })
 
 // Add new expense action
 router.post('/', authenticated, (req, res) => {
-  const record = new Record({
-    name: req.body.name,
-    category: req.body.category,
-    date: req.body.date,
-    amount: req.body.amount,
-    userId: req.user._id
-  })
-  record.save(err => {
-    if (err) return console.error(err)
-    return res.redirect('/')
-  })
+  if (req.body.amount <= 0 || !Number(req.body.amount)) {
+    return res.render('new', {
+      name: req.body.name,
+      category: req.body.category,
+      listdate: req.body.date,
+      warning_msg: '金額必需為大於0的數字'
+    })
+  } else {
+    const record = new Record({
+      name: req.body.name,
+      category: req.body.category,
+      date: req.body.date,
+      amount: req.body.amount,
+      userId: req.user._id
+    })
+    record.save(err => {
+      if (err) return console.error(err)
+      return res.redirect('/')
+    })
+  }
 })
 
 // edit one expense
