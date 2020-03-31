@@ -6,6 +6,7 @@ const categories = require('../data/categories.json')
 const { authenticated } = require('../config/auth')
 
 
+
 // List all expenses
 router.get('/', authenticated, (req, res) => {
   Record.find({ userId: req.user._id })
@@ -69,12 +70,12 @@ router.get('/:id/edit', authenticated, (req, res) => {
     .lean()
     .exec((err, record) => {
       if (err) return console.error(err)
-      return res.render('edit', { categories, record })
+      return res.render('edit', { category: record.category, name: record.name, listdate: record.date, amount: record.amount, record })
     })
 })
 
 // edit one expense action
-router.put('/:id', authenticated, (req, res) => { // 先用post, 之後改成put
+router.put('/:id', authenticated, (req, res) => {
   Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, record) => {
     if (err) return console.error(err)
     record.name = req.body.name,

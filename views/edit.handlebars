@@ -6,13 +6,13 @@
   <div class="form-group row">
     <label for="name" class="col-md-3 col-form-label text-center">名稱* : </label>
     <div class="col-md-8">
-      <input type="text" class="form-control" name="name" value="{{{record.name}}}" required>
+      <input type="text" class="form-control" name="name" value="{{{name}}}" required>
     </div>
   </div>
   <div class="form-group row">
     <label for="date" class="col-md-3 col-form-label text-center">日期* : </label>
     <div class="col-md-8">
-      <input type="date" class="form-control" name="date" value="{{{record.date}}}">
+      <input type="date" class="form-control" name="date" value="{{{listdate}}}">
     </div>
   </div>
   <div class="form-group row">
@@ -20,18 +20,27 @@
     <div class="col-md-8">
       <select class="form-control" name="category">
         {{!-- handlebars helper 來做ifCond的判斷, helper放在record.js裡 --}}
-        <option value="life" {{#ifCond record.category '===' 'life'}} selected {{/ifCond}}>家居物業</option>
-        <option value="travel" {{#ifCond record.category '===' 'travel'}} selected {{/ifCond}}>交通出行</option>
-        <option value="happy" {{#ifCond record.category '===' 'happy'}} selected {{/ifCond}}>休閒娛樂</option>
-        <option value="food" {{#ifCond record.category '===' 'food'}} selected {{/ifCond}}>餐飲食品</option>
-        <option value="others" {{#ifCond record.category '===' 'others'}} selected {{/ifCond}}>其他</option>
+        <option value="life" {{#ifCond category '===' 'life'}} selected {{/ifCond}}>家居物業
+        </option>
+        <option value="travel" {{#ifCond category '===' 'travel'}} selected {{/ifCond}}>交通出行</option>
+        <option value="happy" {{#ifCond category '===' 'happy'}} selected {{/ifCond}}>休閒娛樂</option>
+        <option value="food" {{#ifCond category '===' 'food'}} selected {{/ifCond}}>餐飲食品</option>
+        <option value="others" {{#ifCond category '===' 'others'}} selected {{/ifCond}}>其他</option>
       </select>
     </div>
   </div>
   <div class="form-group row">
     <label for="amount" class="col-md-3 col-form-label text-center">金額* : </label>
     <div class="col-md-8">
-      <input type="text" class="form-control" name="amount" value="{{{record.amount}}}">
+      <input type="text" class="form-control" name="amount" value="{{#if amount}} {{{amount}}} {{/if}}" required>
+      {{#if warning_msg}}
+      <div class="alert alert-danger alert-dismissible fade show mt-1 p-1" role="alert">
+        {{{warning_msg}}}
+        <button type="button" class="close p-1" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      {{/if}}
     </div>
   </div>
   <div class="row">
