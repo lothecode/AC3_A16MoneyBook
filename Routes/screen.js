@@ -53,7 +53,7 @@ router.get('/?', authenticated, (req, res) => {
         total += item.amount
         item.icon = categories[item.category].icon
       })
-      return res.render('index', { categories, records, total, selectCategory, selectMonth, showMonth, showCategory, showOrder })
+      return res.render('index', { categories, records, total, selectCategory, selectMonth, showMonth, showCategory, showOrder, selectOrder })
     })
 })
 module.exports = router

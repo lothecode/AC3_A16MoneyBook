@@ -81,7 +81,7 @@ router.put('/:id', authenticated, (req, res) => {
 })
 
 //delete one expense action
-router.delete('/:id/delete', authenticated, (req, res) => {   // 先用post, 之後改成delete
+router.delete('/:id/delete', authenticated, (req, res) => {
   Record.findOne({ _id: req.params.id, userId: req.user._id }, (err, record) => {
     if (err) return console.error(err)
     record.remove(err => {

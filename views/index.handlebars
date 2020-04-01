@@ -11,19 +11,19 @@
         {{/if}}
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuOffset">
-        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-01-">一月</a>
-        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-02-">二月</a>
-        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-03-">三月</a>
-        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-04-">四月</a>
-        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-05-">五月</a>
-        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-06-">六月</a>
-        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-07-">七月</a>
-        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-08-">八月</a>
-        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-09-">九月</a>
-        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-10-">十月</a>
-        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-11-">十一月</a>
-        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-12-">十二月</a>
-        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=">全部月份</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-01-&sort={{{selectOrder}}}">一月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-02-&sort={{{selectOrder}}}">二月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-03-&sort={{{selectOrder}}}">三月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-04-&sort={{{selectOrder}}}">四月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-05-&sort={{{selectOrder}}}">五月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-06-&sort={{{selectOrder}}}">六月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-07-&sort={{{selectOrder}}}">七月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-08-&sort={{{selectOrder}}}">八月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-09-&sort={{{selectOrder}}}">九月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-10-&sort={{{selectOrder}}}">十月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-11-&sort={{{selectOrder}}}">十一月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=-12-&sort={{{selectOrder}}}">十二月</a>
+        <a class="dropdown-item" href="/screen?cat={{{selectCategory}}}&month=&sort={{{selectOrder}}}">全部月份</a>
       </div>
     </div>
 
@@ -37,11 +37,11 @@
         {{/if}}
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="/screen?cat=life&month={{{selectMonth}}}">家居物業</a>
-        <a class="dropdown-item" href="/screen?cat=travel&month={{{selectMonth}}}">交通出行</a>
-        <a class="dropdown-item" href="/screen?cat=happy&month={{{selectMonth}}}">休閒娛樂</a>
-        <a class="dropdown-item" href="/screen?cat=food&month={{{selectMonth}}}">餐飲食品</a>
-        <a class="dropdown-item" href="/screen?cat=others&month={{{selectMonth}}}">其他</a>
+        <a class="dropdown-item" href="/screen?cat=life&month={{{selectMonth}}}&sort={{{selectOrder}}}">家居物業</a>
+        <a class="dropdown-item" href="/screen?cat=travel&month={{{selectMonth}}}&sort={{{selectOrder}}}">交通出行</a>
+        <a class="dropdown-item" href="/screen?cat=happy&month={{{selectMonth}}}&sort={{{selectOrder}}}">休閒娛樂</a>
+        <a class="dropdown-item" href="/screen?cat=food&month={{{selectMonth}}}&sort={{{selectOrder}}}">餐飲食品</a>
+        <a class="dropdown-item" href="/screen?cat=others&month={{{selectMonth}}}&sort={{{selectOrder}}}">其他</a>
         <a class="dropdown-item" href="/screen?cat=&month={{{selectMonth}}}">全部類別</a>
       </div>
     </div>
@@ -51,7 +51,7 @@
         {{#if showOrder}}
         {{{showOrder}}}
         {{else}}
-        選擇排序
+        時間或金額排序
         {{/if}}
       </button>
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
