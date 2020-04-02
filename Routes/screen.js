@@ -16,24 +16,19 @@ router.get('/?', authenticated, (req, res, next) => {
   const userId = req.user._id
   let querys = { userId }
   let showCategory = '類別 (全部)'
-  let showMonth = '月份 (全部)'
-  // 用keywords作為判斷條件, 將要篩選or排序的條件加入querys這個{}中, 成為後面find的條件式
   if (selectCategory === '' && selectMonth !== '') {
     querys = { userId, date: { $regex: findMonth } }
-    showMonth = months[selectMonth].month_ch
   } else if (selectCategory !== '' && selectMonth === '') {
     querys = { userId, category: selectCategory }
     showCategory = categories[selectCategory].category_ch
   } else if (selectCategory !== '' && selectMonth !== '') {
     querys = { userId, category: selectCategory, date: { $regex: findMonth } }
     showCategory = categories[selectCategory].category_ch
-    showMonth = months[selectMonth].month_ch
   }
-  order = sort(selectOrder)
-  showOrder = orders[selectOrder]
+
   Record
     .find(querys)
-    .sort(order)
+    .sort(sort(selectOrder))
     .lean()
     .exec((err, records) => {
       if (err) return console.error(err)
@@ -42,7 +37,17 @@ router.get('/?', authenticated, (req, res, next) => {
         total += item.amount
         item.icon = categories[item.category].icon
       })
-      return res.render('index', { categories, records, total, selectCategory, selectMonth, showMonth, showCategory, selectOrder, showOrder })
+      return res.render('index', {
+        categories,
+        records,
+        total,
+        selectCategory,
+        showCategory,
+        selectMonth,
+        showMonth: months[selectMonth],
+        selectOrder,
+        showOrder: orders[selectOrder]
+      })
     })
 })
 module.exports = router
