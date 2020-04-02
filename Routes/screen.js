@@ -4,9 +4,11 @@ const Record = require('../models/record')
 const categories = require('../data/categories.json')
 const months = require('../data/months.json')
 const { authenticated } = require('../config/auth')
+const sort = require('../sort')
+const orders = require('../data/order.json')
 
-// sort by category
-router.get('/?', authenticated, (req, res) => {
+// group by month & category,and sort
+router.get('/?', authenticated, (req, res, next) => {
   const selectCategory = req.query.cat || ''
   const selectMonth = req.query.month || ''
   const selectOrder = req.query.sort
@@ -27,21 +29,8 @@ router.get('/?', authenticated, (req, res) => {
     showCategory = categories[selectCategory].category_ch
     showMonth = months[selectMonth].month_ch
   }
-  let order = { date: 'desc' }
-  let showOrder = '時間或金額排序'
-  if (selectOrder === 'dateAsc') {
-    order = { date: 'asc' }
-    showOrder = '時間 (舊->新)'
-  } else if (selectOrder === 'dateDesc') {
-    order = { date: 'desc' }
-    showOrder = '時間 (新->舊)'
-  } else if (selectOrder === 'amountDesc') {
-    order = { amount: 'desc' }
-    showOrder = '金額 (多->少)'
-  } else if (selectOrder === 'amountAsc') {
-    order = { amount: 'asc' }
-    showOrder = '金額 (少->多)'
-  }
+  order = sort(selectOrder)
+  showOrder = orders[selectOrder]
   Record
     .find(querys)
     .sort(order)
@@ -53,7 +42,7 @@ router.get('/?', authenticated, (req, res) => {
         total += item.amount
         item.icon = categories[item.category].icon
       })
-      return res.render('index', { categories, records, total, selectCategory, selectMonth, showMonth, showCategory, showOrder, selectOrder })
+      return res.render('index', { categories, records, total, selectCategory, selectMonth, showMonth, showCategory, selectOrder, showOrder })
     })
 })
 module.exports = router
