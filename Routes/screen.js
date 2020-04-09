@@ -26,17 +26,32 @@ router.get('/?', authenticated, (req, res, next) => {
     showCategory = categories[selectCategory].category_ch
   }
 
+  let total = 0
+  let subtotals = []
+  let categoryList = []
+  let subtotalList = []
   Record
     .find(querys)
     .sort(sort(selectOrder))
     .lean()
     .exec((err, records) => {
       if (err) return console.error(err)
-      let total = 0
-      records.forEach(item => {
-        total += item.amount
-        item.icon = categories[item.category].icon
-      })
+      for (record of records) {
+        total += record.amount
+        record.icon = categories[record.category].icon
+        if (!subtotals[record.category]) {
+          subtotals[record.category] = 0
+          subtotals[record.category] += record.amount
+        } else {
+          subtotals[record.category] += record.amount
+        }
+      }
+
+      for (category in categories) {
+        (subtotals[category]) ? subtotalList.push(+subtotals[category]) : subtotalList.push(0)
+        categoryList.push(category)
+      }
+
       return res.render('index', {
         categories,
         records,
@@ -46,7 +61,8 @@ router.get('/?', authenticated, (req, res, next) => {
         selectMonth,
         showMonth: months[selectMonth],
         selectOrder,
-        showOrder: orders[selectOrder]
+        showOrder: orders[selectOrder],
+        subtotalList
       })
     })
 })

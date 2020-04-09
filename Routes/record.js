@@ -14,11 +14,27 @@ router.get('/', authenticated, (req, res) => {
     .exec((err, records) => {
       if (err) return console.error(err)
       let total = 0
-      records.forEach(item => {
-        total += item.amount
-        item.icon = categories[item.category].icon
-      })
-      return res.render('index', { categories, records, total })
+      let subtotals = []
+      let categoryList = []
+      let subtotalList = []
+
+      for (record of records) {
+        total += record.amount
+        record.icon = categories[record.category].icon
+        if (!subtotals[record.category]) {
+          subtotals[record.category] = 0
+          subtotals[record.category] += record.amount
+        } else {
+          subtotals[record.category] += record.amount
+        }
+      }
+
+      for (category in categories) {
+        (subtotals[category]) ? subtotalList.push(+subtotals[category]) : subtotalList.push(0)
+        categoryList.push(category)
+      }
+
+      return res.render('index', { categories, records, total, subtotalList })
     })
 })
 
